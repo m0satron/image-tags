@@ -1,18 +1,14 @@
 <template>
   <div>
-    <input type="file" @change="onFileSelected" />
-    <Photo :imgSrc="selectedFile" />
+    <input
+type="file"
+@change="onFileSelected" />
   </div>
 </template>
 
 <script>
-import Photo from "../Photo/Photo";
-
 export default {
   name: "Uploader",
-  components: {
-    Photo
-  },
   data() {
     return {
       selectedFile: null
@@ -24,7 +20,7 @@ export default {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (e) => {
-        this.selectedFile = e.target.result;
+        this.$emit('newFile', e.target.result)
       }
     }
   }
