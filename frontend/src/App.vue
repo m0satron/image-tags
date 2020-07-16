@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Tabs />
     <Editor v-on:newImage="updateGallery" />
     <Gallery :images="imageList" />
   </div>
@@ -8,12 +9,14 @@
 <script>
 import Editor from "./components/Editor/Editor";
 import Gallery from "./components/Gallery/Gallery";
+import Tabs from "./components/Tabs/Tabs";
 
 export default {
   name: "App",
   components: {
     Editor,
     Gallery,
+    Tabs
   },
   data() {
     return {

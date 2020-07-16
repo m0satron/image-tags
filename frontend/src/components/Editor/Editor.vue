@@ -8,13 +8,15 @@
         ref="canvas"
         style="border: 1px solid black;"
       />
-      <img class="editor__image" :src="selectedFile" ref="image" />
-      <div class="editor__bg bg-color-blue-light" />
-      <div v-if="tag" class="editor__label--wrapper">
-        <label class="editor__label bg-color-green-light color-black">{{
+      <img class="editor__image" :src="selectedFile" ref="image"  @load="createCanvas"/>
+      <div v-if="tag" class="editor__label--wrapper" :style="labelPositon">
+        <label class="editor__label bg-color-green-light color-black">
+          {{
           tag
-        }}</label>
+          }}
+        </label>
       </div>
+      <div class="editor__bg bg-color-blue-light" />
     </div>
     <div class="editor__foot">
       <input
@@ -30,17 +32,13 @@
         :class="isDisabled ? 'inactive' : ''"
         @click="saveImage"
         :disabled="isDisabled"
-      >
-        save
-      </button>
+      >save</button>
       <button
         class="button bg-color-orange color-white with-border"
         :class="isDisabled ? 'inactive' : ''"
         @click="resetCanvas"
         :disabled="isDisabled"
-      >
-        reset
-      </button>
+      >reset</button>
     </div>
   </div>
 </template>
@@ -54,6 +52,10 @@ export default {
   },
   data() {
     return {
+      labelPositon: {
+          top: 0,
+          left: 0
+      },
       selectedFile: null,
       canvasContext: null,
       canvasSize: {
@@ -74,7 +76,7 @@ export default {
     isDisabled() {
       if (this.selectedFile === null) return true;
       return false;
-    },
+    }
   },
   methods: {
     imgPreview(value) {
@@ -97,13 +99,15 @@ export default {
       localStorage.setItem("images", JSON.stringify(images));
       this.$emit("newImage");
     },
-    resetCanvas() {
+    resetCanvas(e) {
+        if(e && e['type'] === 'click') this.tag = ''; 
       this.canvasContext.clearRect(
         0,
         0,
         this.$refs["canvas"].width,
         this.$refs["canvas"].height
       );
+      
     },
     drawRectangle() {
       this.resetCanvas();
@@ -114,8 +118,8 @@ export default {
         this.coordinates[1].x - this.coordinates[0].x,
         this.coordinates[1].y - this.coordinates[0].y
       );
-      this.canvasContext.strokeStyle = "#df4b26";
-      this.canvasContext.lineWidth = 1;
+      this.canvasContext.strokeStyle = "#5dd483";
+      this.canvasContext.lineWidth = 2;
       this.canvasContext.stroke();
     },
     mouseDown(e) {
@@ -131,6 +135,8 @@ export default {
         x: e.offsetX,
         y: e.offsetY,
       };
+      this.labelPositon['left'] = `${this.coordinates[1].x / 2}px`;
+      this.labelPositon['top'] =  `${this.coordinates[1].y + 10}px`; 
       this.drawRectangle();
     },
     mouseUp(e) {
@@ -140,21 +146,17 @@ export default {
         y: e.offsetY,
       };
     },
-    mouseLeave() {
-      this.mousedown = false;
-    },
+    createCanvas(){
+        const canvas = this.$refs["canvas"];
+        canvas.width = this.$refs['image'].width;
+        canvas.height = this.$refs['image'].height;
+        canvas.onmousedown = this.mouseDown;
+        canvas.onmousemove = this.mouseMove;
+        canvas.onmouseup = this.mouseUp;
+        this.canvasContext = canvas.getContext("2d")
+    }
   },
-  mounted() {
-    const canvas = this.$refs["canvas"];
-    canvas.width = 250;
-    canvas.height = 250;
-    const context = canvas.getContext("2d");
-    canvas.onmousedown = this.mouseDown;
-    canvas.onmousemove = this.mouseMove;
-    canvas.onmouseup = this.mouseUp;
-    canvas.onmouseleave = this.mouseLeave;
-    this.canvasContext = context;
-  },
+
 };
 </script>
 
