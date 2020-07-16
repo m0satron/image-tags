@@ -10,8 +10,11 @@
       />
       <img class="editor__image" :src="selectedFile" ref="image" />
       <div class="editor__bg bg-color-blue-light" />
-
-      <label class="editor__label">{{ tag }}</label>
+      <div v-if="tag" class="editor__label--wrapper">
+        <label class="editor__label bg-color-green-light color-black">{{
+          tag
+        }}</label>
+      </div>
     </div>
     <div class="editor__foot">
       <input
@@ -23,7 +26,7 @@
         placeholder="add tag..."
       />
       <button
-        class="button bg-color-green-dark color-white"
+        class="button bg-color-green-dark color-white with-border"
         :class="isDisabled ? 'inactive' : ''"
         @click="saveImage"
         :disabled="isDisabled"
@@ -31,7 +34,7 @@
         save
       </button>
       <button
-        class="button bg-color-orange color-white"
+        class="button bg-color-orange color-white with-border"
         :class="isDisabled ? 'inactive' : ''"
         @click="resetCanvas"
         :disabled="isDisabled"

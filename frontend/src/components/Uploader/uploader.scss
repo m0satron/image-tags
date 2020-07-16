@@ -1,6 +1,6 @@
 .uploader {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
   width: 83%;
   height: 30px;
   max-height: 30px;
@@ -19,8 +19,6 @@
       cursor: pointer;
       font-size: small;
       padding: 0 2%;
-      border-radius: 2px;
-      border: 1px solid black;
       box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
     }
 
@@ -31,7 +29,7 @@
   }
 
   &__filepath {
-      display: inline-block;
+    display: inline-block;
     width: 50%;
     height: 20px;
     max-height: 30px;
@@ -40,7 +38,5 @@
     text-overflow: ellipsis;
     font-size: small;
     padding: 0 2%;
-    border-radius: 2px;
-    border: 1px solid black;
   }
 }

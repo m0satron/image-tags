@@ -6,8 +6,10 @@
       @change="onFileSelected"
       class="uploader__input bg-color-purple"
     />
-    <label for="file" class="bg-color-purple color-white">Choose a file</label>
-    <span class="uploader__filepath">{{ filePath }}</span>
+    <label for="file" class="bg-color-purple color-white with-border"
+      >Choose a file</label
+    >
+    <span class="uploader__filepath with-border">{{ filePath }}</span>
   </div>
 </template>
 

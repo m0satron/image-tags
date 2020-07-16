@@ -6,7 +6,7 @@
       class="photo__canvas"
       style="border: 2px solid red;"
     />
-    <label v-if="tag"> {{ tag }} </label>
+    <label v-if="tag" class="bg-color-green-light"> {{ tag }} </label>
     <img class="photo__image" :src="imgSrc" />
   </div>
 </template>
