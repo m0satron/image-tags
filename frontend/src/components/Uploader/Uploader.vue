@@ -1,8 +1,13 @@
 <template>
-  <div>
+  <div class="uploader">
     <input
-type="file"
-@change="onFileSelected" />
+      type="file"
+      id="file"
+      @change="onFileSelected"
+      class="uploader__input bg-color-purple"
+    />
+    <label for="file" class="bg-color-purple color-white">Choose a file</label>
+    <span class="uploader__filepath">{{ filePath }}</span>
   </div>
 </template>
 
@@ -11,18 +16,25 @@ export default {
   name: "Uploader",
   data() {
     return {
-      selectedFile: null
+      selectedFile: null,
     };
+  },
+  computed: {
+    filePath() {
+      if (this.selectedFile === null) return "no file selected";
+      return this.selectedFile;
+    },
   },
   methods: {
     onFileSelected(event) {
       const file = event.target.files[0];
+      this.selectedFile = event.target.value.split("\\").pop();
       const reader = new FileReader();
       reader.readAsDataURL(file);
-      reader.onload = (e) => {
-        this.$emit('newFile', e.target.result)
-      }
-    }
-  }
+      reader.onload = (e) => this.$emit("newFile", e.target.result);
+    },
+  },
 };
 </script>
+
+<style lang="scss" src="./uploader.scss" />

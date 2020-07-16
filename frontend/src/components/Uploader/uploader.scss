@@ -1,0 +1,46 @@
+.uploader {
+    margin: 0;
+    padding: 0;
+  width: 83%;
+  height: 30px;
+  max-height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &__input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+
+    & + label {
+      cursor: pointer;
+      font-size: small;
+      padding: 0 2%;
+      border-radius: 2px;
+      border: 1px solid black;
+      box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.8);
+    }
+
+    &:focus + label,
+    & + label:hover {
+      background-color: red;
+    }
+  }
+
+  &__filepath {
+      display: inline-block;
+    width: 50%;
+    height: 20px;
+    max-height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: small;
+    padding: 0 2%;
+    border-radius: 2px;
+    border: 1px solid black;
+  }
+}

@@ -1,0 +1,39 @@
+$blue-light: #1fa0db;
+$purple: #8a667e;
+$green-light: #5dd483;
+$green-dark: #50a16a;
+$orange: #d66e3e;
+$black: #000;
+$white: #fff;
+
+$colors: (
+  "blue-light": $blue-light,
+  "purple": $purple,
+  "green-light": $green-light,
+  "green-dark": $green-dark,
+  "orange": $orange,
+  "black": $black,
+  "white": $white,
+);
+
+@mixin color-class-generator($attribute: "color", $prefix: "-") {
+  @each $color, $value in $colors {
+    &#{$prefix}#{$color} {
+      #{$attribute}: $value;
+    }
+  }
+}
+@mixin bg-color-class-generator($attribute: "background-color", $prefix: "-") {
+  @each $color, $value in $colors {
+    &#{$prefix}#{$color} {
+      #{$attribute}: $value;
+    }
+  }
+}
+
+.color {
+  @include color-class-generator;
+}
+.bg-color {
+  @include bg-color-class-generator;
+}
