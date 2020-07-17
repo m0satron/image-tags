@@ -1,8 +1,14 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .tabs {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 1px solid black;
+  margin-bottom: 2rem;
 }
 
 .tabs__area {
@@ -15,15 +21,14 @@
 }
 
 .tabs-item {
+  box-sizing: border-box;
   cursor: pointer;
   padding: 2px 12px;
   top: 10px;
-  box-shadow: 0 1px 0px 0px #1fa0db;
 }
 
 .is-active {
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-    box-shadow: 0 1px 0px 0px white;
+
+    border-bottom: 3px inset #1fa0db;;
+
 }

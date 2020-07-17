@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="wrapper">
     <div class="tabs">
       <ul class="tabs__area">
         <li v-for="tab in tabs" :key="tab.name">
           <div
             class="tabs-item"
             :class="{
-              'is-active bg-color-white color-black': tab.isActive,
-              'bg-color-blue-light color-white': !tab.isActive
+              'is-active': tab.isActive,
+
             }"
             @click="selectTab(tab)"
           >
