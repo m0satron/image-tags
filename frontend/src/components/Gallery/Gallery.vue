@@ -8,6 +8,7 @@
       :size="image['size']"
       :labelPosition="image['labelPosition']"
       :tag="image['tag']"
+      v-on="$listeners"
     />
   </div>
 </template>
@@ -21,6 +22,11 @@ export default {
   },
   props: {
     images: Array,
+  },
+  methods: {
+    deleted(e) {
+      console.log("from gallery", e);
+    },
   },
 };
 </script>

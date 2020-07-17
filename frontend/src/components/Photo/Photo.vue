@@ -1,5 +1,6 @@
 <template>
   <div class="photo">
+    <close class="photo__icon" @click="deleteImage" />
     <canvas v-if="coordinates" ref="photo-canvas" class="photo__canvas" />
     <div v-if="tag" class="photo__label--wrapper" :style="labelPosition">
       <label class="photo__label bg-color-green-light color-black">{{
@@ -11,13 +12,14 @@
 </template>
 
 <script>
-const rectStyle = {
-  color: "#5dd483",
-  width: 2,
-};
+import { drawCanvas } from "../../mixins/drawCanvas";
+import Close from "vue-material-design-icons/Close.vue";
 
 export default {
   name: "Photo",
+  components: {
+    Close,
+  },
   props: {
     coordinates: Array,
     size: Object,
@@ -25,23 +27,10 @@ export default {
     tag: String,
     imgSrc: String,
   },
-  data() {
-    return {
-      context: "",
-    };
-  },
+  mixins: [drawCanvas],
   methods: {
-    drawRectangle() {
-      this.context.beginPath();
-      this.context.rect(
-        this.coordinates[0].x,
-        this.coordinates[0].y,
-        this.coordinates[1].x - this.coordinates[0].x,
-        this.coordinates[1].y - this.coordinates[0].y
-      );
-      this.context.strokeStyle = rectStyle["color"];
-      this.context.lineWidth = rectStyle["width"];
-      this.context.stroke();
+    deleteImage() {
+      this.$emit("delete", this.tag);
     },
   },
   mounted() {

@@ -18,6 +18,12 @@
     max-height: 100%;
     z-index: 1;
   }
+  &__icon {
+    position: absolute;
+    z-index: 30;
+    right: 1rem;
+    opacity: 0;
+  }
   &__label--wrapper {
     display: block;
     opacity: 0;
@@ -45,6 +51,7 @@
   }
 
   &:hover {
+    .photo__icon,
     .photo__canvas,
     .photo__label--wrapper {
       opacity: 1;

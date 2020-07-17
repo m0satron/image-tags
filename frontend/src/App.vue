@@ -5,7 +5,7 @@
         <Editor v-on:newImage="updateGallery" />
       </TabItem>
       <TabItem name="Gallery">
-        <Gallery :images="imageList" />
+        <Gallery :images="imageList" v-on:delete="deleteImage" />
       </TabItem>
     </TabArea>
   </div>
@@ -32,6 +32,11 @@ export default {
   },
   methods: {
     updateGallery() {
+      this.imageList = JSON.parse(localStorage.getItem("images"));
+    },
+    deleteImage(e) {
+      const newImageList = this.imageList.filter((image) => image.tag !== e);
+      localStorage.setItem("images", JSON.stringify(newImageList));
       this.imageList = JSON.parse(localStorage.getItem("images"));
     },
   },

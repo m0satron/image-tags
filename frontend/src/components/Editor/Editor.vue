@@ -2,12 +2,7 @@
   <div class="editor">
     <Uploader v-on:newFile="imgPreview" />
     <div class="editor__wrapper">
-      <canvas
-        v-show="!isDisabled"
-        class="editor__canvas"
-        ref="canvas"
-        style="border: 1px solid black;"
-      />
+      <canvas v-show="!isDisabled" class="editor__canvas" ref="canvas" />
       <img
         class="editor__image"
         :src="selectedFile"
@@ -52,11 +47,14 @@
 
 <script>
 import Uploader from "../Uploader/Uploader";
+import { drawCanvas } from "../../mixins/drawCanvas";
+
 export default {
   name: "Editor",
   components: {
     Uploader,
   },
+  mixins: [drawCanvas],
   data() {
     return {
       labelPosition: {
@@ -64,7 +62,6 @@ export default {
         left: 0,
       },
       selectedFile: null,
-      canvasContext: null,
       canvasSize: {
         width: null,
         height: null,
@@ -113,25 +110,12 @@ export default {
     },
     resetCanvas(e) {
       if (e && e["type"] === "click") this.tag = "";
-      this.canvasContext.clearRect(
+      this.context.clearRect(
         0,
         0,
         this.$refs["canvas"].width,
         this.$refs["canvas"].height
       );
-    },
-    drawRectangle() {
-      this.resetCanvas();
-      this.canvasContext.beginPath();
-      this.canvasContext.rect(
-        this.coordinates[0].x,
-        this.coordinates[0].y,
-        this.coordinates[1].x - this.coordinates[0].x,
-        this.coordinates[1].y - this.coordinates[0].y
-      );
-      this.canvasContext.strokeStyle = "#5dd483";
-      this.canvasContext.lineWidth = 2;
-      this.canvasContext.stroke();
     },
     mouseDown(e) {
       this.coordinates[0] = {
@@ -148,7 +132,7 @@ export default {
       };
       this.labelPosition["left"] = `${this.coordinates[1].x / 2}px`;
       this.labelPosition["top"] = `${this.coordinates[1].y + 10}px`;
-      this.drawRectangle();
+      this.drawRectangle(this.resetCanvas);
     },
     mouseUp(e) {
       this.mousedown = false;
@@ -164,7 +148,7 @@ export default {
       canvas.onmousedown = this.mouseDown;
       canvas.onmousemove = this.mouseMove;
       canvas.onmouseup = this.mouseUp;
-      this.canvasContext = canvas.getContext("2d");
+      this.context = canvas.getContext("2d");
     },
   },
 };
