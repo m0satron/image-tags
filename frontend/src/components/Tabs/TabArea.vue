@@ -7,7 +7,6 @@
             class="tabs-item"
             :class="{
               'is-active': tab.isActive,
-
             }"
             @click="selectTab(tab)"
           >

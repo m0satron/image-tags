@@ -1,26 +1,27 @@
 <template>
   <div class="photo">
-    <canvas
-      v-if="coordinates"
-      ref="photo-canvas"
-      class="photo__canvas"
-      style="border: 2px solid red;"
-    />
-    <label v-if="tag" class="bg-color-green-light"> {{ tag }} </label>
-    <img class="photo__image" :src="imgSrc" />
+    <canvas v-if="coordinates" ref="photo-canvas" class="photo__canvas" />
+    <div v-if="tag" class="photo__label--wrapper" :style="labelPosition">
+      <label class="photo__label bg-color-green-light color-black">{{
+        tag
+      }}</label>
+    </div>
+    <img class="photo__image" :ref="`img-${tag}`" :src="imgSrc" />
   </div>
 </template>
 
 <script>
 const rectStyle = {
-  color: "#df4b26",
-  width: 1,
+  color: "#5dd483",
+  width: 2,
 };
 
 export default {
   name: "Photo",
   props: {
     coordinates: Array,
+    size: Object,
+    labelPosition: Object,
     tag: String,
     imgSrc: String,
   },
@@ -45,6 +46,8 @@ export default {
   },
   mounted() {
     const canvas = this.$refs["photo-canvas"];
+    canvas.width = this.size["width"];
+    canvas.height = this.size["height"];
     if (canvas) {
       this.context = canvas.getContext("2d");
       this.drawRectangle();

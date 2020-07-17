@@ -14,7 +14,7 @@
         ref="image"
         @load="createCanvas"
       />
-      <div v-if="tag" class="editor__label--wrapper" :style="labelPositon">
+      <div v-if="tag" class="editor__label--wrapper" :style="labelPosition">
         <label class="editor__label bg-color-green-light color-black">
           {{ tag }}
         </label>
@@ -59,7 +59,7 @@ export default {
   },
   data() {
     return {
-      labelPositon: {
+      labelPosition: {
         top: 0,
         left: 0,
       },
@@ -93,6 +93,11 @@ export default {
       const images = JSON.parse(localStorage.getItem("images"));
       const imageData = {
         imgSrc: this.selectedFile,
+        size: {
+          width: this.$refs["image"].width,
+          height: this.$refs["image"].height,
+        },
+        labelPosition: this.labelPosition,
         coordinates: this.coordinates,
         tag: this.tag,
       };
@@ -141,8 +146,8 @@ export default {
         x: e.offsetX,
         y: e.offsetY,
       };
-      this.labelPositon["left"] = `${this.coordinates[1].x / 2}px`;
-      this.labelPositon["top"] = `${this.coordinates[1].y + 10}px`;
+      this.labelPosition["left"] = `${this.coordinates[1].x / 2}px`;
+      this.labelPosition["top"] = `${this.coordinates[1].y + 10}px`;
       this.drawRectangle();
     },
     mouseUp(e) {

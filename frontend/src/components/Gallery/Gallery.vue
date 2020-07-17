@@ -1,14 +1,14 @@
 <template>
-  <div>
-    <div v-if="images">
-      <Photo
-        v-for="image in images"
-        :key="image['tag']"
-        :imgSrc="image['imgSrc']"
-        :coordinates="image['coordinates']"
-        :tag="image['tag']"
-      />
-    </div>
+  <div v-if="images" class="gallery">
+    <Photo
+      v-for="image in images"
+      :key="image['tag']"
+      :imgSrc="image['imgSrc']"
+      :coordinates="image['coordinates']"
+      :size="image['size']"
+      :labelPosition="image['labelPosition']"
+      :tag="image['tag']"
+    />
   </div>
 </template>
 
@@ -24,3 +24,5 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" src="./gallery.scss" />
