@@ -8,12 +8,15 @@
         ref="canvas"
         style="border: 1px solid black;"
       />
-      <img class="editor__image" :src="selectedFile" ref="image"  @load="createCanvas"/>
+      <img
+        class="editor__image"
+        :src="selectedFile"
+        ref="image"
+        @load="createCanvas"
+      />
       <div v-if="tag" class="editor__label--wrapper" :style="labelPositon">
         <label class="editor__label bg-color-green-light color-black">
-          {{
-          tag
-          }}
+          {{ tag }}
         </label>
       </div>
       <div class="editor__bg bg-color-blue-light" />
@@ -32,13 +35,17 @@
         :class="isDisabled ? 'inactive' : ''"
         @click="saveImage"
         :disabled="isDisabled"
-      >save</button>
+      >
+        save
+      </button>
       <button
         class="button bg-color-orange color-white with-border"
         :class="isDisabled ? 'inactive' : ''"
         @click="resetCanvas"
         :disabled="isDisabled"
-      >reset</button>
+      >
+        reset
+      </button>
     </div>
   </div>
 </template>
@@ -53,8 +60,8 @@ export default {
   data() {
     return {
       labelPositon: {
-          top: 0,
-          left: 0
+        top: 0,
+        left: 0,
       },
       selectedFile: null,
       canvasContext: null,
@@ -76,7 +83,7 @@ export default {
     isDisabled() {
       if (this.selectedFile === null) return true;
       return false;
-    }
+    },
   },
   methods: {
     imgPreview(value) {
@@ -100,14 +107,13 @@ export default {
       this.$emit("newImage");
     },
     resetCanvas(e) {
-        if(e && e['type'] === 'click') this.tag = ''; 
+      if (e && e["type"] === "click") this.tag = "";
       this.canvasContext.clearRect(
         0,
         0,
         this.$refs["canvas"].width,
         this.$refs["canvas"].height
       );
-      
     },
     drawRectangle() {
       this.resetCanvas();
@@ -135,8 +141,8 @@ export default {
         x: e.offsetX,
         y: e.offsetY,
       };
-      this.labelPositon['left'] = `${this.coordinates[1].x / 2}px`;
-      this.labelPositon['top'] =  `${this.coordinates[1].y + 10}px`; 
+      this.labelPositon["left"] = `${this.coordinates[1].x / 2}px`;
+      this.labelPositon["top"] = `${this.coordinates[1].y + 10}px`;
       this.drawRectangle();
     },
     mouseUp(e) {
@@ -146,17 +152,16 @@ export default {
         y: e.offsetY,
       };
     },
-    createCanvas(){
-        const canvas = this.$refs["canvas"];
-        canvas.width = this.$refs['image'].width;
-        canvas.height = this.$refs['image'].height;
-        canvas.onmousedown = this.mouseDown;
-        canvas.onmousemove = this.mouseMove;
-        canvas.onmouseup = this.mouseUp;
-        this.canvasContext = canvas.getContext("2d")
-    }
+    createCanvas() {
+      const canvas = this.$refs["canvas"];
+      canvas.width = this.$refs["image"].width;
+      canvas.height = this.$refs["image"].height;
+      canvas.onmousedown = this.mouseDown;
+      canvas.onmousemove = this.mouseMove;
+      canvas.onmouseup = this.mouseUp;
+      this.canvasContext = canvas.getContext("2d");
+    },
   },
-
 };
 </script>
 

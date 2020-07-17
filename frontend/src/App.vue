@@ -1,22 +1,29 @@
 <template>
   <div id="app">
-    <Tabs />
-    <Editor v-on:newImage="updateGallery" />
-    <Gallery :images="imageList" />
+    <TabArea>
+      <TabItem name="Upload" :selected="true">
+        <Editor v-on:newImage="updateGallery" />
+      </TabItem>
+      <TabItem name="Gallery">
+        <Gallery :images="imageList" />
+      </TabItem>
+    </TabArea>
   </div>
 </template>
 
 <script>
 import Editor from "./components/Editor/Editor";
 import Gallery from "./components/Gallery/Gallery";
-import Tabs from "./components/Tabs/Tabs";
+import TabArea from "./components/Tabs/TabArea";
+import TabItem from "./components/Tabs/TabItem";
 
 export default {
   name: "App",
   components: {
     Editor,
     Gallery,
-    Tabs
+    TabArea,
+    TabItem,
   },
   data() {
     return {
