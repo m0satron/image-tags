@@ -4,11 +4,13 @@ This is a small software to upload and tag photos, simply click and drag a squar
 
 ## known issues
 
+- The service is at the moment not compatible with touch devices. 
+
 - There is no notification on wether saving the image was successful or not. A suggestion is to add a snackbar that notifies the user when the image is saved.
 
 - The label does not center itself good enough under the drawn rectangle, the positioning coordinates for the label and for the square need to be mapped so it renders correctly.
 
-- If the mouse leaves the canvas area while drawing the square, mouseup does not get register, a function to check mousedown outside canvas need to be added.
+- If the mouse leaves the canvas area while drawing the square, mouseup does not get registered, a function to check mousedown outside canvas need to be added.
 
 - There are no breakpoints. Since this repo is more of a micro frontend service rather than a full app. However, should this be integrated with other services, breakpoints will be necessary.
 

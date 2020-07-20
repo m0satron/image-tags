@@ -58,8 +58,8 @@ export default {
   data() {
     return {
       labelPosition: {
-        top: 0,
-        left: 0,
+        top: "50%",
+        left: "40%",
       },
       selectedFile: null,
       canvasSize: {
