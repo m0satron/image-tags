@@ -1,7 +1,7 @@
 .photo {
   position: relative;
   width: 25rem;
-  height: 250rem;
+  height: 25rem;
   margin: 2rem;
 
   &__canvas {
@@ -47,7 +47,7 @@
     min-width: 4rem;
     max-width: 8rem;
     min-height: 1.2rem;
-    border-radius: 2rem;
+    border-radius: .2rem;
   }
 
   &:hover {
