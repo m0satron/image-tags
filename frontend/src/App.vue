@@ -40,15 +40,13 @@ export default {
         this.$emit("newImage");
         return;
       }
-      
+
       this.imageList.unshift(e);
       localStorage.setItem("images", JSON.stringify(this.imageList));
       this.updateGallery();
-
-
     },
     deleteImage(e) {
-      const newImageList = this.imageList.filter(image => image.tag !== e);
+      const newImageList = this.imageList.filter((image) => image.tag !== e);
       localStorage.setItem("images", JSON.stringify(newImageList));
       this.updateGallery();
     },

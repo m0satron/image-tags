@@ -2,7 +2,7 @@
 @use "base.scss";
 
 .with-border {
-  border: .1rem solid black;
-  border-radius: .2rem;
-  box-shadow: .1rem .1rem 0 rgba(0, 0, 0, 0.8);
+  border: 0.1rem solid black;
+  border-radius: 0.2rem;
+  box-shadow: 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.8);
 }
