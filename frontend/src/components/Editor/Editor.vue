@@ -18,7 +18,7 @@
     </div>
     <div class="editor__foot">
       <input
-        class="editor__input"
+        class="editor__input with-border"
         :class="isDisabled ? 'inactive' : ''"
         type="text"
         v-model="tag"
@@ -87,7 +87,6 @@ export default {
       this.selectedFile = value;
     },
     saveImage() {
-      const images = JSON.parse(localStorage.getItem("images"));
       const imageData = {
         imgSrc: this.selectedFile,
         size: {
@@ -98,15 +97,7 @@ export default {
         coordinates: this.coordinates,
         tag: this.tag,
       };
-      if (!images) {
-        localStorage.setItem("images", JSON.stringify([{ ...imageData }]));
-        this.$emit("newImage");
-        return;
-      }
-
-      images.unshift(imageData);
-      localStorage.setItem("images", JSON.stringify(images));
-      this.$emit("newImage");
+      this.$emit("newImage", imageData);
     },
     resetCanvas(e) {
       if (e && e["type"] === "click") this.tag = "";
@@ -142,6 +133,7 @@ export default {
       };
     },
     createCanvas() {
+      this.tag = "";
       const canvas = this.$refs["canvas"];
       canvas.width = this.$refs["image"].width;
       canvas.height = this.$refs["image"].height;

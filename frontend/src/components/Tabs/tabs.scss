@@ -23,10 +23,10 @@
 .tabs-item {
   box-sizing: border-box;
   cursor: pointer;
-  padding: 2px 12px;
-  top: 10px;
+  padding: .2rem 1.2rem;
+  top: 1rem;
 }
 
 .is-active {
-  border-bottom: 3px inset #1fa0db;
+  border-bottom: .3rem inset #1fa0db;
 }

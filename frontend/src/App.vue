@@ -2,7 +2,7 @@
   <div id="app">
     <TabArea>
       <TabItem name="Upload" :selected="true">
-        <Editor v-on:newImage="updateGallery" />
+        <Editor v-on:newImage="saveImage" />
       </TabItem>
       <TabItem name="Gallery">
         <Gallery :images="imageList" v-on:delete="deleteImage" />
@@ -34,10 +34,23 @@ export default {
     updateGallery() {
       this.imageList = JSON.parse(localStorage.getItem("images"));
     },
+    saveImage(e) {
+      if (this.imageList === null) {
+        localStorage.setItem("images", JSON.stringify([{ ...e }]));
+        this.$emit("newImage");
+        return;
+      }
+      
+      this.imageList.unshift(e);
+      localStorage.setItem("images", JSON.stringify(this.imageList));
+      this.updateGallery();
+
+
+    },
     deleteImage(e) {
-      const newImageList = this.imageList.filter((image) => image.tag !== e);
+      const newImageList = this.imageList.filter(image => image.tag !== e);
       localStorage.setItem("images", JSON.stringify(newImageList));
-      this.imageList = JSON.parse(localStorage.getItem("images"));
+      this.updateGallery();
     },
   },
   beforeMount() {

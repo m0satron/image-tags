@@ -23,11 +23,6 @@ export default {
   props: {
     images: Array,
   },
-  methods: {
-    deleted(e) {
-      console.log("from gallery", e);
-    },
-  },
 };
 </script>
 

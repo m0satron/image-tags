@@ -1,7 +1,7 @@
 .photo {
   position: relative;
-  width: 250px;
-  height: 250px;
+  width: 25rem;
+  height: 250rem;
   margin: 2rem;
 
   &__canvas {
@@ -34,20 +34,20 @@
       position: absolute;
       top: -40%;
       left: 35%;
-      border-bottom: 8px solid #5dd483;
+      border-bottom: .8rem solid #5dd483;
       border-top-color: inherit;
-      border-left: 8px solid transparent;
-      border-right: 8px solid transparent;
+      border-left: .8rem solid transparent;
+      border-right: .8rem solid transparent;
     }
   }
   &__label {
     font-weight: bold;
     padding: 1% 6%;
     display: inline-block;
-    min-width: 40px;
-    max-width: 80px;
-    min-height: 12px;
-    border-radius: 2px;
+    min-width: 4rem;
+    max-width: 8rem;
+    min-height: 1.2rem;
+    border-radius: 2rem;
   }
 
   &:hover {
