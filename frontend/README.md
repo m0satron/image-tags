@@ -22,6 +22,8 @@ This is a small software to upload and tag photos, simply click and drag a squar
 
 - The linter needs to be better configured.
 
+- Add custom webpack config
+
 ## Project setup
 
 ```
